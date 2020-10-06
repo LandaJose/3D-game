@@ -36,28 +36,28 @@ public class CharacterMovement : MonoBehaviour
                 Vector3 movement = (Vector3.forward * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
-                UnityEngine.Debug.Log("The character is moving forward");
+                //UnityEngine.Debug.Log("The character is moving forward");
             }
             if (keyboard.sKey.isPressed || keyboard.downArrowKey.wasPressedThisFrame)
             {
                 Vector3 movement = (Vector3.back * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
-                UnityEngine.Debug.Log("The character is moving backward");
+                //UnityEngine.Debug.Log("The character is moving backward");
             }
             if (keyboard.aKey.isPressed || keyboard.leftArrowKey.wasPressedThisFrame)
             {
                 Vector3 movement = (Vector3.left * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
-                UnityEngine.Debug.Log("The character is moving left");
+               // UnityEngine.Debug.Log("The character is moving left");
             }
             if (keyboard.dKey.isPressed || keyboard.rightArrowKey.wasPressedThisFrame)
             {
                 Vector3 movement = (Vector3.right * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
-                UnityEngine.Debug.Log("The character is moving right");
+               // UnityEngine.Debug.Log("The character is moving right");
             }
         }
 
@@ -65,11 +65,11 @@ public class CharacterMovement : MonoBehaviour
         {
             if (mouse.leftButton.wasPressedThisFrame)
             {
-                UnityEngine.Debug.Log("Left Mouse Button Pressed");
+                //UnityEngine.Debug.Log("Left Mouse Button Pressed");
             }
             if (mouse.rightButton.wasPressedThisFrame)
             {
-                UnityEngine.Debug.Log("Right Mouse Button is Held Down");
+                //UnityEngine.Debug.Log("Right Mouse Button is Held Down");
             }
         }
 
