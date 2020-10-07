@@ -31,28 +31,28 @@ public class CharacterMovement : MonoBehaviour
 
         if (keyboard != null)
         {
-            if (keyboard.wKey.isPressed || keyboard.upArrowKey.wasPressedThisFrame)
+            if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
             {
                 Vector3 movement = (Vector3.forward * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
                 //UnityEngine.Debug.Log("The character is moving forward");
             }
-            if (keyboard.sKey.isPressed || keyboard.downArrowKey.wasPressedThisFrame)
+            if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
             {
                 Vector3 movement = (Vector3.back * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
                 //UnityEngine.Debug.Log("The character is moving backward");
             }
-            if (keyboard.aKey.isPressed || keyboard.leftArrowKey.wasPressedThisFrame)
+            if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
             {
                 Vector3 movement = (Vector3.left * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);
                 controller.Move(movement);
                // UnityEngine.Debug.Log("The character is moving left");
             }
-            if (keyboard.dKey.isPressed || keyboard.rightArrowKey.wasPressedThisFrame)
+            if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
             {
                 Vector3 movement = (Vector3.right * _speed * Time.deltaTime);
                 movement = transform.TransformDirection(movement);

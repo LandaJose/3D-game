@@ -23,7 +23,7 @@ public class ViewController : MonoBehaviour
             float mouseY = mouse.delta.y.ReadValue() * mouseSensitivity * Time.deltaTime;
             playerBody.Rotate(Vector3.up * mouseX);
             xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation = Mathf.Clamp(xRotation, -80f, 45f);
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         }
 
