@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class CrawlerAnimationChange : MonoBehaviour
 {
     Animator anim;
-    private bool isCrawling = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,16 +19,7 @@ public class CrawlerAnimationChange : MonoBehaviour
 
         if (keyboard != null)
         {
-            if (keyboard.tabKey.wasPressedThisFrame && !isCrawling)
-            {
-                anim.SetTrigger("Crawl");
-                isCrawling = true;
-            }
-            else if (keyboard.tabKey.wasPressedThisFrame && isCrawling)
-            {
-                anim.SetTrigger("Idle");
-                isCrawling = false;
-            }
+            
         }
     }
 }

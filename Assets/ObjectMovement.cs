@@ -9,9 +9,9 @@ public class ObjectMovement : MonoBehaviour
     public float defaultObjectDistance = 8f;
     public string movableTag = "Movable";
     private Transform _selection;
+    private Rigidbody _selectionRigidbody;
 
 
-   
 
 
     // Update is called once per frame
@@ -42,6 +42,7 @@ public class ObjectMovement : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 25f)) {
             Debug.Log("Touch Object " + hit.transform.gameObject.name);
             Transform selection = hit.transform;
+            _selectionRigidbody = hit.rigidbody;
             if (selection.CompareTag(movableTag)) {
                 _selection = selection;
             }
@@ -53,8 +54,9 @@ public class ObjectMovement : MonoBehaviour
     }
 
     void MoveWithMouse() {
-
-        _selection.position = new Vector3(transform.position.x + transform.forward.x * 2, transform.position.y + 1f, transform.position.z + transform.forward.z * 2);
+        _selectionRigidbody.MovePosition(new Vector3(transform.position.x + transform.forward.x * 2, transform.position.y + 1f, transform.position.z + transform.forward.z * 2));
+        _selectionRigidbody.velocity = Vector3.zero;
+        _selectionRigidbody.angularVelocity = Vector3.zero;
     }
 
   
