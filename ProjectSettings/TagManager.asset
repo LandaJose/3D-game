@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Interact
   - Movable
+  - LightObj
+  - BatteryRefuel
+  - FlashLightObj
   layers:
   - Default
   - TransparentFX
