@@ -11,7 +11,7 @@ public class StaminaBar : MonoBehaviour
 
 
     private float maxStamina = 100f;
-    private float currentStamina;
+    public static float currentStamina;
 
     private WaitForSeconds regenTick = new WaitForSeconds(0.1f);
     private Coroutine regen;

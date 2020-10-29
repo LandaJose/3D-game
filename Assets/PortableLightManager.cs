@@ -36,7 +36,7 @@ public class PortableLightManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 2.5f))
+        if (Physics.Raycast(ray, out hit, 3.0f))
         {
             Transform selection = hit.transform;
             if (selection.gameObject.Equals(lantern))
