@@ -109,7 +109,7 @@ public class StaminaBar : MonoBehaviour
 
         while (currentStamina > 0)
         {
-            currentStamina -= 1f;
+            currentStamina -= .20f;
             staminaBar.value = currentStamina;
             yield return regenTick;
         }
