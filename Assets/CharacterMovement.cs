@@ -61,6 +61,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+     
         if (mouse != null)
         {
             if (mouse.leftButton.wasPressedThisFrame)
@@ -72,6 +73,7 @@ public class CharacterMovement : MonoBehaviour
                 //UnityEngine.Debug.Log("Right Mouse Button is Held Down");
             }
         }
+
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
