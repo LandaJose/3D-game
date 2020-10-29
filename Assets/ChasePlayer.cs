@@ -9,12 +9,16 @@ public class ChasePlayer : MonoBehaviour
 {
     private NavMeshAgent crawler;
     public GameObject Player;
-    public float crawlerDistanceRun = 5.0f;
+    public float crawlerDistanceRun = 30.0f;
     private bool beginCrawling = false;
+    public static Vector3 spawnDestination;
+    public static int speed;
     // Start is called before the first frame update
     void Start()
     {
         crawler = GetComponent<NavMeshAgent>();
+        spawnDestination = GameObject.Find("Crawler").transform.position;
+        speed = 1;
     }
 
     // Update is called once per frame
@@ -24,11 +28,11 @@ public class ChasePlayer : MonoBehaviour
 
         if (keyboard != null)
         {
-            if (keyboard.tabKey.wasPressedThisFrame && !beginCrawling)
+            if ((StaminaBar.currentStamina <= 0) && !beginCrawling)
             {
                 beginCrawling = true;
             }
-            else if (keyboard.tabKey.wasPressedThisFrame && beginCrawling)
+            else if ((StaminaBar.currentStamina >= 0) && beginCrawling)
             {
                 beginCrawling = false;
             }
@@ -40,6 +44,14 @@ public class ChasePlayer : MonoBehaviour
             Vector3 newPosition = transform.position - dirToPlayer;
 
             crawler.SetDestination(newPosition);
+            crawler.speed = 3;
+        }
+        else if (!beginCrawling)
+        {
+            crawler.SetDestination(spawnDestination);
+            crawler.speed = 6;
         }
     }
+
+
 }
