@@ -7,8 +7,6 @@ using System.Collections;
 public class StaminaBar : MonoBehaviour
 {
     public Slider staminaBar;
-    public GameObject lightSource;
-
 
     private float maxStamina = 100f;
     public static float currentStamina;
@@ -18,6 +16,8 @@ public class StaminaBar : MonoBehaviour
 
     public static StaminaBar instance;
 
+    private GameObject player;
+
     private void Awake()
     {
         instance = this;
@@ -26,14 +26,14 @@ public class StaminaBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         currentStamina = maxStamina;
         staminaBar.maxValue = maxStamina;
         staminaBar.value = maxStamina;
     }
 
-    public void StartLight(GameObject lightSource)
+    public void StartLight()
     {
-        this.lightSource = lightSource;
         if (currentStamina  > 0)
         {
             if (regen != null)
@@ -58,7 +58,8 @@ public class StaminaBar : MonoBehaviour
         }
         if (condition == true)
         {
-            this.lightSource.SetActive(true);
+            player.GetComponent<PortableLightManager>().TurnOnLight();
+         
             currentStamina += amount;
             staminaBar.value = currentStamina;
             regen = StartCoroutine(RegenStamina());
@@ -90,7 +91,6 @@ public class StaminaBar : MonoBehaviour
         }
 
         
-        //this.lightSource.SetActive(true);
         currentStamina = 100;
         staminaBar.value = currentStamina;
 
@@ -116,8 +116,7 @@ public class StaminaBar : MonoBehaviour
 
         if(currentStamina <= 0)
         {
-            Debug.Log("Light to turn off: " + lightSource.name);
-            lightSource.SetActive(false);
+            player.GetComponent<PortableLightManager>().TurnOffAllLights();
         }
     }
 

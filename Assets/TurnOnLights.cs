@@ -31,6 +31,13 @@ public class TurnOnLights : MonoBehaviour
                     if (selection.gameObject.Equals(generator))
                     {
                         turnOnLights();
+                        StaminaBar.instance.newBatterObj();
+                        GameObject[] allLights = new GameObject[lights.Length + emissionLights.Length + directionalLights.Length];
+                        lights.CopyTo(allLights, 0);
+                        emissionLights.CopyTo(allLights, lights.Length);
+                        directionalLights.CopyTo(allLights, lights.Length + emissionLights.Length);
+                        StaminaBar.instance.StartLight();
+
                     }
                 }
             }
