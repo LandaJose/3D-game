@@ -11,13 +11,26 @@ public class PortableLightManager : MonoBehaviour
     public GameObject[] oilCans;
     public GameObject[] batterys;
 
+    public Light[] lights;
+    public GameObject[] emissionLights;
+    public Light[] directionalLights;
+
+    public GameObject generator;
+
+    //public GameObject mainGasCan;
+    //public GameObject[] gasCans;
+
     public GameObject lanternPointLight;
     public GameObject flashlightSpotLight;
 
     private string rechargeTag = "BatteryRefuel";
 
+    private string activeLight;
 
-
+    void Start()
+    {
+        TurnOffAllLights();
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,37 +54,72 @@ public class PortableLightManager : MonoBehaviour
             Transform selection = hit.transform;
             if (selection.gameObject.Equals(lantern))
             {
+                activeLight = "lantern";
                 lantern.SetActive(false);
-                LightChanger("lantern");
+                TurnOnLight();
                 EnableOilCans(true);
-                StaminaBar.instance.StartLight(lanternPointLight);
-            } else if (selection.gameObject.Equals(flashlight))
+                StaminaBar.instance.StartLight();
+            }
+            else if (selection.gameObject.Equals(flashlight))
             {
+                activeLight = "flashlight";
                 flashlight.SetActive(false);
-                LightChanger("flashlight");
+                TurnOnLight();
                 EnableBatteries(true);
                 StaminaBar.instance.newBatterObj();
-                StaminaBar.instance.StartLight(flashlightSpotLight);
-                
-            } else if(selection.CompareTag(rechargeTag) && StaminaBar.instance.CheckBattery())
+                StaminaBar.instance.StartLight();
+
+            }
+            else if (selection.CompareTag(rechargeTag) && StaminaBar.instance.CheckBattery())
             {
                 selection.gameObject.SetActive(false);
                 StaminaBar.instance.LightRecharge(25f, true);
             }
+            else if (selection.gameObject.Equals(generator))
+            {
+                activeLight = "house";
+                TurnOnLight();
+                EnableOilCans(false);
+                EnableBatteries(false);
+                StaminaBar.instance.newBatterObj();
+                StaminaBar.instance.StartLight();
+
+            }
         }
     }
 
-    void LightChanger(string portableLight)
+    public void TurnOnLight()
     {
-        if (portableLight.Equals("lantern"))
+        if (activeLight.Equals("lantern"))
         {
             lanternPointLight.SetActive(true);
 
         }
-        else if (portableLight.Equals("flashlight"))
+        else if (activeLight.Equals("flashlight"))
         {
             lanternPointLight.SetActive(false);
             flashlightSpotLight.SetActive(true);
+        }
+        else if (activeLight.Equals("house"))
+        {
+            lanternPointLight.SetActive(false);
+            flashlightSpotLight.SetActive(false);
+
+            foreach (Light light in lights)
+            {
+                if (light.name == "Spot Light")
+                {
+                    light.enabled = true;
+                }
+            }
+            foreach (GameObject emissionLight in emissionLights)
+            {
+                emissionLight.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+            }
+            foreach (Light dirLight in directionalLights)
+            {
+                dirLight.intensity = 0.125f;
+            }
         }
     }
 
@@ -89,6 +137,30 @@ public class PortableLightManager : MonoBehaviour
         {
             battery.SetActive(active);
             EnableOilCans(false);
+        }
+    }
+
+    public void TurnOffAllLights()
+    {
+        lanternPointLight.SetActive(false);
+        flashlightSpotLight.SetActive(false);
+
+        foreach (Light light in lights)
+        {
+            if (light.name == "Spot Light")
+            {
+                light.enabled = false;
+            }
+        }
+
+        foreach (Light dirLight in directionalLights)
+        {
+            dirLight.intensity = 0.075f;
+        }
+
+        foreach (GameObject emissionLight in emissionLights)
+        {
+            emissionLight.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
 
