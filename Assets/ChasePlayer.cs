@@ -12,13 +12,11 @@ public class ChasePlayer : MonoBehaviour
     public float crawlerDistanceRun = 30.0f;
     private bool beginCrawling = false;
     public static Vector3 spawnDestination;
-    public static int speed;
     // Start is called before the first frame update
     void Start()
     {
         crawler = GetComponent<NavMeshAgent>();
         spawnDestination = GameObject.Find("Crawler").transform.position;
-        speed = 1;
     }
 
     // Update is called once per frame
@@ -49,7 +47,7 @@ public class ChasePlayer : MonoBehaviour
         else if (!beginCrawling)
         {
             crawler.SetDestination(spawnDestination);
-            crawler.speed = 6;
+            crawler.speed = 8;
         }
     }
 
