@@ -38,7 +38,6 @@ public class PortableLightManager : MonoBehaviour
     void Update()
     {
         var mouse = Mouse.current;
-
         if (mouse.leftButton.wasPressedThisFrame)
         {
             PickUp();
