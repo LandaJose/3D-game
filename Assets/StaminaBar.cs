@@ -89,10 +89,16 @@ public class StaminaBar : MonoBehaviour
         {
             StopCoroutine(regen);
         }
-
-        
-        currentStamina = 100;
-        staminaBar.value = currentStamina;
+        if (PortableLightManager.genOn)
+        {
+            currentStamina = 200;
+            staminaBar.value = currentStamina;
+        }
+        else
+        {
+            currentStamina = 100;
+            staminaBar.value = currentStamina;
+        }
 
 
         Debug.Log(currentStamina);
@@ -120,5 +126,8 @@ public class StaminaBar : MonoBehaviour
         }
     }
 
-
+    public void setMaxStam()
+    {
+        staminaBar.maxValue = 200;
+    }
 }
