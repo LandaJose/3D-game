@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,7 @@ public class PortableLightManager : MonoBehaviour
     public GameObject flashlight;
     public GameObject[] oilCans;
     public GameObject[] batterys;
-
+    public static Boolean genOn;
     public Light[] lights;
     public GameObject[] emissionLights;
     public Light[] directionalLights;
@@ -29,6 +30,7 @@ public class PortableLightManager : MonoBehaviour
 
     void Start()
     {
+        genOn = false;
         TurnOffAllLights();
     }
 
@@ -77,13 +79,15 @@ public class PortableLightManager : MonoBehaviour
             }
             else if (selection.gameObject.Equals(generator))
             {
+                genOn = true;
                 activeLight = "house";
                 TurnOnLight();
                 EnableOilCans(false);
                 EnableBatteries(false);
+                StaminaBar.instance.setMaxStam();
                 StaminaBar.instance.newBatterObj();
                 StaminaBar.instance.StartLight();
-
+                
             }
         }
     }
@@ -163,6 +167,5 @@ public class PortableLightManager : MonoBehaviour
             emissionLight.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
         }
     }
-
 
 }
