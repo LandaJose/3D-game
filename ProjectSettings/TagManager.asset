@@ -9,6 +9,11 @@ TagManager:
   - LightObj
   - BatteryRefuel
   - FlashLightObj
+  - WoodFloor
+  - StoneFloor
+  - Lantern
+  - GasCan
+  - GasCanMain
   layers:
   - Default
   - TransparentFX
