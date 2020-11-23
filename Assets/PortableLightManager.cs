@@ -18,8 +18,8 @@ public class PortableLightManager : MonoBehaviour
 
     public GameObject generator;
 
-    //public GameObject mainGasCan;
-    //public GameObject[] gasCans;
+    public GameObject mainGasCan;
+    public GameObject[] gasCans;
 
     public GameObject lanternPointLight;
     public GameObject flashlightSpotLight;
@@ -28,9 +28,12 @@ public class PortableLightManager : MonoBehaviour
 
     private string activeLight;
 
+    private Inventory inventory;
+
     void Start()
     {
         genOn = false;
+        inventory =  gameObject.GetComponent<Inventory>();
         TurnOffAllLights();
     }
 
@@ -78,15 +81,24 @@ public class PortableLightManager : MonoBehaviour
             }
             else if (selection.gameObject.Equals(generator))
             {
-                genOn = true;
-                activeLight = "house";
-                TurnOnLight();
-                EnableOilCans(false);
-                EnableBatteries(false);
-                StaminaBar.instance.setMaxStam();
-                StaminaBar.instance.newBatterObj();
-                StaminaBar.instance.StartLight();
-                
+                for (int i = 0; i < inventory.slots.Length; i++)
+                {
+                    if (inventory.slottedObject[i] != null && StaminaBar.instance.CheckBattery() && (inventory.slottedObject[i].CompareTag("GasCan") || inventory.slottedObject[i].CompareTag("GasCanMain")))
+                    {
+                        genOn = true;
+                        activeLight = "house";
+                        TurnOnLight();
+                        EnableOilCans(false);
+                        EnableBatteries(false);
+                        StaminaBar.instance.setMaxStam();
+                        StaminaBar.instance.newBatterObj();
+                        StaminaBar.instance.StartLight();
+                        Destroy(inventory.icons[i]);
+                        inventory.isFull[i] = false;
+                        inventory.slottedObject[i] = null;
+                        break;
+                    }
+                }
             }
         }
     }
@@ -140,6 +152,16 @@ public class PortableLightManager : MonoBehaviour
         {
             battery.SetActive(active);
             EnableOilCans(false);
+        }
+    }
+
+    public void EnableGasCans(bool active)
+    {
+        foreach (GameObject gasCan in gasCans)
+        {
+            gasCan.SetActive(active);
+            EnableOilCans(false);
+            EnableBatteries(false);
         }
     }
 
