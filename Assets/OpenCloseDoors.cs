@@ -10,10 +10,10 @@ public class OpenCloseDoors : MonoBehaviour
 
     bool open = false;
     bool enter = false;
-    bool hasSFBathroomKey = false;
-    bool hasSFMasterBedroomKey = false;
-    bool hasFlashlightKey = false;
-    bool hasFrontDoorKey = false;
+    public static bool hasSFBathroomKey = false;
+    public static bool hasSFMasterBedroomKey = false;
+    public static bool hasFlashlightKey = false;
+    public static bool hasFrontDoorKey = true;
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
@@ -61,6 +61,8 @@ public class OpenCloseDoors : MonoBehaviour
         }
         else if (this.CompareTag("FrontDoor") && keyboard.eKey.wasPressedThisFrame && enter && hasFrontDoorKey)
         {
+            Debug.Log("FRONT DOOR OPENED");
+            WinGame.gameWon = true;
             //this will set a boolean to display the game over menu in another script
         }
     }
@@ -79,25 +81,5 @@ public class OpenCloseDoors : MonoBehaviour
         {
             enter = false;
         }
-    }
-
-    void FlashlightRoomKey()
-    {
-        hasFlashlightKey = true;
-    }
-
-    void MasterBedroomKey()
-    {
-        hasSFMasterBedroomKey = true;
-    }
-
-    void SecondFloorBathroomKey()
-    {
-        hasSFBathroomKey = true;
-    }
-
-    void FrontDoorKey()
-    {
-        hasFrontDoorKey = true;
     }
 }
