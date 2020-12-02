@@ -25,7 +25,6 @@ public class WinGame : MonoBehaviour
 
     public void Restart()
     {
-        EndGame.gameEnded = false;
         Cursor.lockState = CursorLockMode.Locked;
         gameWonUI.SetActive(false);
         Time.timeScale = 1f;
