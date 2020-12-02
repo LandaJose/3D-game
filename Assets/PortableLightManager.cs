@@ -30,10 +30,13 @@ public class PortableLightManager : MonoBehaviour
 
     private Inventory inventory;
 
+    private Puzzle1 puzzle1;
+
     void Start()
     {
         genOn = false;
         inventory =  gameObject.GetComponent<Inventory>();
+        puzzle1 = gameObject.GetComponent<Puzzle1>();
         TurnOffAllLights();
     }
 
@@ -63,6 +66,7 @@ public class PortableLightManager : MonoBehaviour
                 TurnOnLight();
                 EnableOilCans(true);
                 StaminaBar.instance.StartLight();
+                puzzle1.SpawnLetters();
             }
             else if (selection.gameObject.Equals(flashlight))
             {
@@ -72,6 +76,7 @@ public class PortableLightManager : MonoBehaviour
                 EnableBatteries(true);
                 StaminaBar.instance.newBatterObj();
                 StaminaBar.instance.StartLight();
+                puzzle1.SpawnAces();
 
             }
             else if (selection.CompareTag(rechargeTag) && StaminaBar.instance.CheckBattery())
@@ -180,7 +185,7 @@ public class PortableLightManager : MonoBehaviour
 
         foreach (Light dirLight in directionalLights)
         {
-            dirLight.intensity = 0.075f;
+            dirLight.intensity = 0.025f;
         }
 
         foreach (GameObject emissionLight in emissionLights)
