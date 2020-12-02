@@ -13,7 +13,7 @@ public class OpenCloseDoors : MonoBehaviour
     public static bool hasSFBathroomKey = false;
     public static bool hasSFMasterBedroomKey = false;
     public static bool hasFlashlightKey = false;
-    public static bool hasFrontDoorKey = true;
+    public static bool hasFrontDoorKey = false;
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
