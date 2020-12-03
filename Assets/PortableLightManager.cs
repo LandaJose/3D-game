@@ -185,7 +185,7 @@ public class PortableLightManager : MonoBehaviour
 
         foreach (Light dirLight in directionalLights)
         {
-            dirLight.intensity = 0.025f;
+            dirLight.intensity = 0.075f;
         }
 
         foreach (GameObject emissionLight in emissionLights)

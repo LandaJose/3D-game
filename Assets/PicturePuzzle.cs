@@ -25,13 +25,13 @@ public class PicturePuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var keyboard = Keyboard.current;
-        if(PortableLightManager.genOn  && !cardSpawned)
+        var mouse = Mouse.current;
+        if (PortableLightManager.genOn  && !cardSpawned)
         {
             SpawnPuzzle3Cards();
             cardSpawned = true;
         }
-        if (keyboard.fKey.wasPressedThisFrame)
+        if (mouse.leftButton.wasPressedThisFrame)
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;

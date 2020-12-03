@@ -100,19 +100,19 @@ public class Puzzle1 : MonoBehaviour
         switch (papersPickedUp)
         {
             case 1:
-                paperText = "HeLlO, You are here for the actions of your Corgi. We are the HOA and your dog has defecated for the last time in our front yards. 1/5 ";
+                paperText = "1/5 \nHello, You are here for the actions of your Corgi. We are the HOA and your dog has defecated on our front yards for the last time.";
                 break;
             case 2:
-                paperText = " You must now collect a series of items in order for you to escape and once again see your dog 2/5";
+                paperText = "2/5 \nYou must now collect a series of items in order for you to escape and once again see your dog";
                 break;
             case 3:
-                paperText = "You will have 2 more sources of light a flash light and generator 3/5 ";
+                paperText = "3/5 \nYou will have 2 more sources of light a flash light and generator";
                 break;
             case 4:
-                paperText = "Have fun 4/5";
+                paperText = "4/5 \nDear Head Master Chief,\nI am tired of Siz's dog leaving its little presents on my lawn. He must learn.";
                 break;
             case 5:
-                paperText = "Good Job, you found these pointless letters, now find the aces and remember to check locked doors after completing one of these puzzles.";
+                paperText = "5/5 \nYou found these pointless letters, now find the aces and remember to check locked doors after finishing a puzzle.";
                 break;
         }
         paperTextMesh.text = paperText;
