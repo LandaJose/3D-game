@@ -25,6 +25,7 @@ public class PicturePuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+/*        var keyboard = Keyboard.current;*/
         var mouse = Mouse.current;
         if (PortableLightManager.genOn  && !cardSpawned)
         {
