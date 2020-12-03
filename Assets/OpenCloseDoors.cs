@@ -10,10 +10,10 @@ public class OpenCloseDoors : MonoBehaviour
 
     bool open = false;
     bool enter = false;
-    public static bool hasSFBathroomKey = false;
-    public static bool hasSFMasterBedroomKey = false;
-    public static bool hasFlashlightKey = false;
-    public static bool hasFrontDoorKey = false;
+    public static bool hasSFBathroomKey;
+    public static bool hasSFMasterBedroomKey;
+    public static bool hasFlashlightKey;
+    public static bool hasFrontDoorKey;
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
@@ -22,7 +22,10 @@ public class OpenCloseDoors : MonoBehaviour
     {
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
-
+        hasFlashlightKey = false;
+        hasFrontDoorKey = false;
+        hasSFMasterBedroomKey = false;
+        hasSFBathroomKey = false;
     }
 
     // Update is called once per frame
