@@ -8,6 +8,7 @@ public class PicturePuzzle : MonoBehaviour
     public GameObject[] puzzle3Cards;
     public GameObject[] tableCards;
     public GameObject[] pickedUpCards = new GameObject[4];
+    private bool cardSpawned = false ;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,10 @@ public class PicturePuzzle : MonoBehaviour
     void Update()
     {
         var keyboard = Keyboard.current;
-        if(PortableLightManager.genOn)
+        if(PortableLightManager.genOn  && !cardSpawned)
         {
             SpawnPuzzle3Cards();
+            cardSpawned = true;
         }
         if (keyboard.fKey.wasPressedThisFrame)
         {
