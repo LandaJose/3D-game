@@ -166,7 +166,6 @@ public class PortableLightManager : MonoBehaviour
         {
             gasCan.SetActive(active);
             EnableOilCans(false);
-            EnableBatteries(false);
         }
     }
 
